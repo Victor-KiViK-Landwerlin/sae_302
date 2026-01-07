@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>International — Magazine & WebTV (IUT NFC)</title>
+
+  <style>
+    
+
+    :root{
+      --ink:#0b2233;
+      --muted:#6b7b88;
+      --bg:#ffffff;
+
+      --line:#d7e0e8;
+
+      --nav:#0b3f53;          
+      --nav2:#083342;
+      --navText:#ffffff;
+
+      --accent:#e3423d;       
+      --link:#0b3f53;
+
+      --container:1180px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{ color:inherit; }
+
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    
+    .mini-top{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+    .mini-top__row{
+      display:flex;
+      align-items:center;
+      gap:0;
+      min-height:46px;
+    }
+    .mini-top__brandmark{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-right:1px solid var(--line);
+    }
+    .mini-top__brandmark span{
+      width:26px;
+      height:26px;
+      border-radius:999px;
+      background: var(--accent);
+      display:block;
+      opacity:.9;
+    }
+    .mini-top__links{
+      display:flex;
+      align-items:stretch;
+      flex:1;
+      overflow:auto;
+    }
+    .mini-top__links a{
+      display:flex;
+      align-items:center;
+      padding:0 18px;
+      text-decoration:none;
+      font-weight:650;
+      color:var(--ink);
+      white-space:nowrap;
+      border-right:1px solid var(--line);
+    }
+    .mini-top__links a:hover{
+      background:#f6f8fa;
+    }
+
+   
+    .brandband{
+      background: linear-gradient(90deg, #d84b61 0%, #d58b52 50%, #c9557d 100%);
+      border-bottom:1px solid rgba(255,255,255,.25);
+    }
+    .brandband__row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:18px 0;
+    }
+    .brandband__left{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      min-width:0;
+    }
+
+    .logoBox{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#111;
+      text-decoration:none;
+    }
+
+    
+    .logoPh{
+      width:170px;
+      height:44px;
+      border-radius:8px;
+      background: rgba(255,255,255,.75);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:.02em;
+    }
+    .logoPh small{ font-weight:700; opacity:.8; }
+
+    .brandband__divider{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.25);
+      opacity:.5;
+      flex:0 0 auto;
+    }
+
+    .social{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .social a{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      background: rgba(0,0,0,.65);
+      display:grid;
+      place-items:center;
+      text-decoration:none;
+    }
+    .social svg{ width:17px; height:17px; fill:#fff; }
+    .social a:hover{ background: rgba(0,0,0,.80); }
+
+    
+    .mainnav{
+      background: var(--nav);
+      border-top: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+    }
+    .mainnav__row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:0;
+    }
+    .menu{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:0;
+      align-items:stretch;
+      flex-wrap:wrap;
+    }
+    .menu > li{ position:relative; }
+    .menu > li > a{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 18px;
+      color:var(--navText);
+      text-decoration:none;
+      font-weight:800;
+      font-size:0.98rem;
+    }
+    .menu > li > a:hover{
+      background: var(--nav2);
+    }
+    .chev{
+      width:10px; height:10px;
+      display:inline-block;
+      transform: translateY(1px);
+    }
+    .chev::before{
+      content:"";
+      display:block;
+      width:0;height:0;
+      border-left:5px solid transparent;
+      border-right:5px solid transparent;
+      border-top:6px solid rgba(255,255,255,.9);
+    }
+
+    
+    .dropdown{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      min-width:260px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      z-index:50;
+    }
+    .menu > li:hover .dropdown{ display:block; }
+    .dropdown a{
+      display:block;
+      padding:10px 12px;
+      text-decoration:none;
+      color:var(--ink);
+      font-weight:650;
+      border-bottom:1px solid #eef2f6;
+    }
+    .dropdown a:hover{ background:#f6f8fa; }
+    .dropdown a:last-child{ border-bottom:none; }
+
+    
+    .nav-mobile{ display:none; }
+    @media (max-width: 980px){
+      .menu{ display:none; }
+      .nav-mobile{ display:block; width:100%; padding:10px 0; }
+      .nav-mobile details{
+        background: rgba(255,255,255,.08);
+        border:1px solid rgba(255,255,255,.18);
+        border-radius:10px;
+        padding:10px 12px;
+        color:#fff;
+      }
+      .nav-mobile summary{
+        cursor:pointer;
+        font-weight:900;
+        list-style:none;
+      }
+      .nav-mobile summary::-webkit-details-marker{ display:none; }
+      .nav-mobile a{
+        display:block;
+        padding:10px 0;
+        text-decoration:none;
+        border-top:1px solid rgba(255,255,255,.18);
+        margin-top:10px;
+        font-weight:700;
+      }
+    }
+
+  
+    main{
+      padding: 26px 0 46px;
+      background:#fff;
+    }
+    .page-title{
+      margin:0 0 6px;
+      font-size:2rem;
+      font-weight:900;
+      letter-spacing:.01em;
+    }
+    .page-lead{
+      margin:0;
+      color:var(--muted);
+      max-width: 85ch;
+    }
+
+    .actions{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:6px;
+      border:1px solid var(--line);
+      background:#fff;
+      text-decoration:none;
+      font-weight:800;
+      color:var(--link);
+    }
+    .btn:hover{ background:#f6f8fa; }
+    .btn--primary{
+      background: var(--nav);
+      color:#fff;
+      border-color: var(--nav);
+    }
+    .btn--primary:hover{ background: var(--nav2); border-color: var(--nav2); }
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:18px;
+    }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1.2fr .8fr; align-items:start; }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:18px;
+    }
+    .card h2{
+      margin:0 0 10px;
+      font-size:1.25rem;
+      font-weight:900;
+      border-left:4px solid var(--accent);
+      padding-left:10px;
+    }
+    .muted{ color:var(--muted); margin:0 0 12px; }
+
+    .mag{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (min-width: 760px){
+      .mag{ grid-template-columns: 300px 1fr; }
+    }
+
+    .cover{
+      width:100%;
+      border:1px solid var(--line);
+      background:#f6f8fa;
+      min-height: 380px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      color:var(--muted);
+      font-weight:800;
+    }
+
+    .list{
+      margin:0 0 12px 18px;
+      color:var(--muted);
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (min-width: 760px){
+      .video-grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .video{
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .video__head{
+      padding:12px 12px 0;
+    }
+    .video h3{ margin:0 0 6px; font-size:1.05rem; font-weight:900; }
+    .meta{ margin:0 0 12px; color:var(--muted); font-size:.95rem; }
+
+    .ratio{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#0b0f14;
+      border-top:1px solid var(--line);
+    }
+    .ratio iframe{ width:100%; height:100%; border:0; }
+
+    .links a{
+      color: var(--link);
+      font-weight:800;
+      text-underline-offset:2px;
+    }
+
+    .callout{
+      border:1px solid var(--line);
+      background:#f6f8fa;
+      padding:14px;
+      margin-top:12px;
+    }
+
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:.92rem;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <div class="mini-top">
+    <div class="container">
+      <div class="mini-top__row">
+        <div class="mini-top__brandmark" aria-hidden="true"><span></span></div>
+        <nav class="mini-top__links" aria-label="Navigation Université">
+          <a href="#">Facultés (UFR)</a>
+          <a href="#">Instituts et écoles</a>
+          <a href="#">Unités de recherche</a>
+          <a href="#">Services et outils</a>
+          <a href="#">L’ACTU</a>
+          <a href="#">ENT</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="brandband">
+    <div class="container">
+      <div class="brandband__row">
+        <div class="brandband__left">
+          
+          <div class="logoPh">UMLP<br><small>logo</small></div>
+
+          <div class="brandband__divider" aria-hidden="true"></div>
+
+        
+          <div class="logoPh">IUT NFC<br><small>logo</small></div>
+        </div>
+
+        <nav class="social" aria-label="Réseaux sociaux">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.2a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H16.8V5a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3H10v8h3.5z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.5 31.5 0 0 0 2 12a31.5 31.5 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 22 12a31.5 31.5 0 0 0-.4-4.8zM10 15.5V8.5L16 12l-6 3.5z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M6.5 6.8A2.1 2.1 0 1 1 6.5 2.6a2.1 2.1 0 0 1 0 4.2zM4.6 21.4V9h3.8v12.4H4.6zM10.2 9h3.6v1.7h.1a4 4 0 0 1 3.6-2c3.8 0 4.5 2.5 4.5 5.8v6.9h-3.8v-6.1c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3v6.2h-3.8V9z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M16.7 2h-2.6v13.2a3.2 3.2 0 1 1-3-3.2c.4 0 .7.1 1 .2V9.6c-.3-.1-.7-.1-1-.1A5.8 5.8 0 1 0 17 15.2V7.9c1.2.9 2.7 1.4 4.2 1.4V6.7c-2.4 0-4.2-1.9-4.5-4.7z"/></svg>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  
+  <nav class="mainnav" aria-label="Menu principal IUT NFC">
+    <div class="container">
+      <div class="mainnav__row">
+        <ul class="menu">
+          <li>
+            <a href="#">L’iUT <span class="chev" aria-hidden="true"></span></a>
+            <div class="dropdown">
+              <a href="#">Organisation</a>
+              <a href="#">Se rendre à l’IUT</a>
+              <a href="#">L’IUT recrute</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">Formations <span class="chev" aria-hidden="true"></span></a>
+            <div class="dropdown">
+              <a href="#">Catalogue</a>
+              <a href="#">BUT</a>
+              <a href="#">Licences pro</a>
+            </div>
+          </li>
+          <li><a href="#">Candidature <span class="chev" aria-hidden="true"></span></a></li>
+          <li><a href="#">Admission <span class="chev" aria-hidden="true"></span></a></li>
+          <li><a href="#">Vie étudiante <span class="chev" aria-hidden="true"></span></a></li>
+          <li>
+            <a href="#">International <span class="chev" aria-hidden="true"></span></a>
+            <div class="dropdown">
+              <a href="#">Accueillir des étudiants internationaux</a>
+              <a href="#">Semestre à l’étranger</a>
+              <a href="#">Stage à l’étranger</a>
+            </div>
+          </li>
+          <li><a href="#">Entreprises <span class="chev" aria-hidden="true"></span></a></li>
+          <li><a href="#">Recherche <span class="chev" aria-hidden="true"></span></a></li>
+        </ul>
+
+        <div class="nav-mobile">
+          <details>
+            <summary>Menu</summary>
+            <a href="#">L’iUT</a>
+            <a href="#">Formations</a>
+            <a href="#">Candidature</a>
+            <a href="#">Admission</a>
+            <a href="#">Vie étudiante</a>
+            <a href="#">International</a>
+            <a href="#">Entreprises</a>
+            <a href="#">Recherche</a>
+          </details>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <main>
+    <div class="container">
+      <p class="kicker">International</p>
+      <h1 class="page-title">Mobilité internationale : magazine & contenus multimédias</h1>
+      <p class="page-lead">
+        Cette page présente le magazine (PDF) et les contenus vidéo (émission WebTV + interview visio) réalisés
+        autour de la mobilité internationale. Elle sert de point d’entrée unique vers les ressources et contacts.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn--primary" href="#magazine">Voir le magazine</a>
+        <a class="btn" href="#videos">Voir les vidéos</a>
+        <a class="btn" href="#ressources">Ressources</a>
+      </div>
+
+      <div class="grid">
+       
+        <div>
+          <section class="card" id="magazine">
+            <h2>Le magazine</h2>
+            <p class="muted">
+              Édition print & numérique : parcours, conseils, retours d’expérience, ressources et contacts.
+            </p>
+
+            <div class="mag">
+             
+              <div class="cover">Couverture du magazine<br><small>(à remplacer)</small></div>
+
+              <div>
+                <ul class="list">
+                  <li>Comprendre les options : semestre / stage / projets</li>
+                  <li>Préparer son départ : démarches, organisation, adaptation</li>
+                  <li>Ressources officielles et contacts</li>
+                </ul>
+
+                <div class="actions">
+               
+                  <a class="btn btn--primary" href="PDF_URL" target="_blank" rel="noopener">Télécharger le PDF</a>
+                  <a class="btn" href="#videos">Regarder la WebTV</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="videos" style="margin-top:18px;">
+            <h2>Vidéos</h2>
+            <p class="muted">Émission WebTV sur plateau + extrait d’interview enregistré en visio.</p>
+
+            <div class="video-grid">
+              <article class="video">
+                <div class="video__head">
+                  <h3>Émission WebTV</h3>
+                  <p class="meta">Plateau + introduction d’un extrait · 8–12 min</p>
+                </div>
+                <div class="ratio">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                    title="Émission WebTV"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+              </article>
+
+              <article class="video">
+                <div class="video__head">
+                  <h3>Extrait d’interview (visio)</h3>
+                  <p class="meta">Témoignage + conseils · format court</p>
+                </div>
+                <div class="ratio">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/VIDEO_ID_2"
+                    title="Extrait interview visio"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+    
+        <aside class="card links" id="ressources">
+          <h2>Ressources & contacts</h2>
+          <p class="muted">Liens utiles pour se repérer et préparer un projet de mobilité.</p>
+
+          <ul class="list">
+            <li><a href="#">Accueillir des étudiants internationaux</a></li>
+            <li><a href="#">Étudiant international admis : démarches</a></li>
+            <li><a href="#">Faire un semestre à l’étranger</a></li>
+            <li><a href="#">Faire un stage à l’étranger</a></li>
+          </ul>
+
+          <div class="callout">
+            <strong>Besoin d’un accompagnement ?</strong>
+            <div style="color:var(--muted);">
+              Consulte le magazine et les vidéos, puis contacte le service international pour construire ton projet.
+            </div>
+            <div class="actions">
+              <a class="btn btn--primary" href="#">Contacter le service international</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        Page projet — IUT Nord Franche-Comté · Mobilité internationale (Magazine + WebTV)
+      </footer>
+    </div>
+  </main>
+
+</body>
+</html>
